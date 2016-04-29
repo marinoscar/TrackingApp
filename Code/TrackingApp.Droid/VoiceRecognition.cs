@@ -34,7 +34,7 @@ namespace TrackingApp.Droid
             voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 1500);
             voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 15000);
             voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
-            voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, Java.Util.Locale.Default);
+            voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, "es-ES");
             Activity.StartActivityForResult(voiceIntent, (int)Request.Voice);
         }
     }
