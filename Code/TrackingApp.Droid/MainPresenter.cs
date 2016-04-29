@@ -16,12 +16,12 @@ namespace TrackingApp.Droid
     {
         private int _count;
 
-        public MainPresenter(IActivity activity): base(activity)
+        public MainPresenter(IActivity activity) : base(activity)
         {
 
         }
 
-        public void BindView()
+        public override void BindView()
         {
             var button = Activity.FindViewById<Button>(Resource.Id.MyButton);
             button.Click += OnButtonClick;
