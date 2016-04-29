@@ -50,12 +50,12 @@ namespace TrackingApp.Droid
     {
         public TextParserServiceResult()
         {
-            IntentResults = new List<IntentResult>();
+            IntentsResults = new List<IntentResult>();
             EntitiesResults = new List<EntityResult>();
             TokenizedText = new List<string>();
         }
 
-        public List<IntentResult> IntentResults { get; set; }
+        public List<IntentResult> IntentsResults { get; set; }
         public List<EntityResult> EntitiesResults { get; set; }
         public string UtteranceText { get; set; }
 
