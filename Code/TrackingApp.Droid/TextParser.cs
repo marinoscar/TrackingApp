@@ -12,7 +12,8 @@ using Android.Widget;
 
 namespace TrackingApp.Droid
 {
-    class TextParser
+    public class TextParser
     {
+
     }
 }
