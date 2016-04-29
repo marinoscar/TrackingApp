@@ -36,6 +36,7 @@ namespace TrackingApp.Droid
             var results = e.Data.GetStringArrayListExtra(RecognizerIntent.ExtraResults);
             if (!results.Any()) return;
             var result = string.Join(" ", results);
+            return;
         }
 
         private void OnBasicButtonClick(object sender, EventArgs e)
