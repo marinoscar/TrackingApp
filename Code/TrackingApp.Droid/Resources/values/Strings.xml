@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">TrackingApp.Droid</string>
+  <string name="Hello">Hello World, Click Me!</string>
+  <string name="SpeechButton.Text">Capture Speech</string>
+  <string name="SpeechMessage">Speak</string>
+  <string name="ApplicationName">TrackingApp.Droid</string>
 </resources>
