@@ -15,5 +15,7 @@ namespace TrackingApp.Droid
     public interface IActivity
     {
         T FindViewById<T>(int id) where T : View;
+        void StartActivityForResult(Intent intent, int requestCode);
+        event EventHandler<ActivityResultArgs> ActivityResult;
     }
 }
