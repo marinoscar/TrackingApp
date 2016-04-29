@@ -26,9 +26,9 @@ namespace TrackingApp.Droid
         {
             var dic = new Dictionary<string, string>()
             {
-                {"url",  Resources.System.GetString(Resource.String.LuisEndPoint)},
-                {"id",  Resources.System.GetString(Resource.String.LuisId)},
-                {"key",  Resources.System.GetString(Resource.String.LuisKey)},
+                {"url",  Application.Context.GetString(Resource.String.LuisEndPoint)},
+                {"id",  Application.Context.GetString(Resource.String.LuisId)},
+                {"key",  Application.Context.GetString(Resource.String.LuisKey)},
             };
             var client = new RestClient(dic["url"]);
             var request = GetRequest(dic, text);
