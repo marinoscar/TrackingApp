@@ -16,10 +16,10 @@ namespace TrackingApp.Droid
     public class MainPresenter : PresenterBase
     {
         private int _count;
-
-        public MainPresenter(IActivity activity) : base(activity)
+        private TextParser _parser;
+        public MainPresenter(IActivity activity, ITextParserService parserService) : base(activity)
         {
-
+            _parser = new TextParser(parserService);
         }
 
         public override void BindView()
@@ -36,6 +36,7 @@ namespace TrackingApp.Droid
             var results = e.Data.GetStringArrayListExtra(RecognizerIntent.ExtraResults);
             if (!results.Any()) return;
             var result = string.Join(" ", results);
+            var dataItem = _parser.Parse(result);
             return;
         }
 
