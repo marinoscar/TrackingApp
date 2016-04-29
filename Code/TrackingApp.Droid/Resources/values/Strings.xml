@@ -4,4 +4,7 @@
   <string name="SpeechButton.Text">Capture Speech</string>
   <string name="SpeechMessage">Speak</string>
   <string name="ApplicationName">TrackingApp.Droid</string>
+  <string name="LuisEndPoint">https://api.projectoxford.ai/luis/v1/application</string>
+  <string name="LuisId">9f08fd09-8983-4687-9975-2cb47185d27a</string>
+  <string name="LuisKey">27767877abe24296b41b79b0a03f587c</string>
 </resources>

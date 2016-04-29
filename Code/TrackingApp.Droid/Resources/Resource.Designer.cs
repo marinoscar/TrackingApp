@@ -104,6 +104,15 @@ namespace TrackingApp.Droid
 			// aapt resource value: 0x7f040000
 			public const int Hello = 2130968576;
 			
+			// aapt resource value: 0x7f040004
+			public const int LuisEndPoint = 2130968580;
+			
+			// aapt resource value: 0x7f040005
+			public const int LuisId = 2130968581;
+			
+			// aapt resource value: 0x7f040006
+			public const int LuisKey = 2130968582;
+			
 			// aapt resource value: 0x7f040001
 			public const int SpeechButton_Text = 2130968577;
 			
