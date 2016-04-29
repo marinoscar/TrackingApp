@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using RestSharp;
 using System.Net;
+using Newtonsoft.Json;
 
 namespace TrackingApp.Droid
 {
@@ -24,12 +25,14 @@ namespace TrackingApp.Droid
         public ApiResult<T> Execute<T>(IRestClient client, IRestRequest request, Action<T, IRestResponse> validation) where T : new()
         {
             var result = new ApiResult<T>();
-            IRestResponse<T> response = null;
+            IRestResponse response = null;
             try
             {
-                response = client.Execute<T>(request);
+                response = client.Execute(request);
                 result.Message = response.StatusDescription;
-                result.Result = response.Data;
+                result.Result = JsonConvert
+                    .DeserializeObject<List<T>>(response.Content, new JsonSerializerSettings() { EqualityComparer = StringComparer.CurrentCultureIgnoreCase })
+                    .FirstOrDefault();
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     result.HasErrors = true;
