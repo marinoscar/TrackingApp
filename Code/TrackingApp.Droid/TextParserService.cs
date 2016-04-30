@@ -33,7 +33,15 @@ namespace TrackingApp.Droid
             var client = new RestClient(dic["url"]);
             var request = GetRequest(dic, text);
             var requestor = new ApiRequestor();
-            return requestor.Execute<TextParserServiceResult>(client, request);
+            var result =  requestor.Execute<List<TextParserServiceResult>>(client, request);
+            return new ApiResult<TextParserServiceResult>()
+            {
+                Code = result.Code,
+                Exception = result.Exception,
+                HasErrors = result.HasErrors,
+                Message = result.Message,
+                Result = result.Result.FirstOrDefault()
+            };
         }
 
         private IRestRequest GetRequest(Dictionary<string, string> dic, string text)
