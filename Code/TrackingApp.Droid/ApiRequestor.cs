@@ -43,8 +43,7 @@ namespace TrackingApp.Droid
                 else
                 {
                     result.Result = JsonConvert
-                    .DeserializeObject<List<T>>(response.Content, new JsonSerializerSettings() { EqualityComparer = StringComparer.CurrentCultureIgnoreCase })
-                    .FirstOrDefault();
+                    .DeserializeObject<T>(response.Content, new JsonSerializerSettings() { EqualityComparer = StringComparer.CurrentCultureIgnoreCase });
                 }
             }
             catch (Exception ex)
