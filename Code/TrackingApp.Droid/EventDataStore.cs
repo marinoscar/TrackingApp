@@ -10,22 +10,21 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.Storage.Table;
 
 namespace TrackingApp.Droid
 {
     public class EventDataStore
     {
-        public EventDataStore(ITableStore<EventItem> store)
+        public EventDataStore(ITableAdapter adapter)
         {
-            TableStore = store;
+            Adapter = adapter;
         }
 
-        public ITableStore<EventItem> TableStore { get; private set; }
+        public ITableAdapter Adapter { get; private set; }
 
-        public Task<TableResult> AddAsync(EventItem item)
+        public void Add(Event item)
         {
-            return TableStore.AddAndPersistAsync(item);
+            var result = Adapter.Add(item);
         }
     }
 }

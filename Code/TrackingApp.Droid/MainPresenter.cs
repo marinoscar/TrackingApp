@@ -42,11 +42,9 @@ namespace TrackingApp.Droid
 
         private void PersistResult(TextParseResult result)
         {
-            var item = EventItem.FromTextResult(result);
-            var store = new EventDataStore(new TableStore<EventItem>("events"));
-            var res = store.AddAsync(item);
-            res.Wait();
-            var vals = res.Result;
+            var item = Event.FromTextResult(result);
+            var store = new EventDataStore(new TableAdapter("events", StringSettings.Setttings));
+            store.Add(item);
         }
 
         private void OnBasicButtonClick(object sender, EventArgs e)
