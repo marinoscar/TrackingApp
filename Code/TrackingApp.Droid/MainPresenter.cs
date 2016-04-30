@@ -36,8 +36,17 @@ namespace TrackingApp.Droid
             var results = e.Data.GetStringArrayListExtra(RecognizerIntent.ExtraResults);
             if (!results.Any()) return;
             var result = string.Join(" ", results);
-            var dataItem = _parser.Parse(result);
+            PersistResult(_parser.Parse(result));
             return;
+        }
+
+        private void PersistResult(TextParseResult result)
+        {
+            var item = EventItem.FromTextResult(result);
+            var store = new EventDataStore(new TableStore<EventItem>("events"));
+            var res = store.AddAsync(item);
+            res.Wait();
+            var vals = res.Result;
         }
 
         private void OnBasicButtonClick(object sender, EventArgs e)
