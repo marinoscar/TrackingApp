@@ -22,9 +22,10 @@ namespace TrackingApp.Droid
 
         public ITableAdapter Adapter { get; private set; }
 
-        public void Add(Event item)
+        public bool Add(Event item)
         {
             var result = Adapter.Add(item);
+            return !result.HasErrors;
         }
     }
 }
