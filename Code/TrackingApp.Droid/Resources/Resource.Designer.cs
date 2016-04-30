@@ -119,6 +119,12 @@ namespace TrackingApp.Droid
 			// aapt resource value: 0x7f040002
 			public const int SpeechMessage = 2130968578;
 			
+			// aapt resource value: 0x7f040008
+			public const int TableStore = 2130968584;
+			
+			// aapt resource value: 0x7f040007
+			public const int TableStoreKey = 2130968583;
+			
 			static String()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
