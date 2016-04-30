@@ -17,10 +17,14 @@ namespace TrackingApp.Droid
     {
         private int _count;
         private TextParser _parser;
+        private VoiceHelper _voiceHelper;
+
         public MainPresenter(IActivity activity, ITextParserService parserService) : base(activity)
         {
             _parser = new TextParser(parserService);
         }
+
+        public VoiceHelper VoiceHelper { get { return _voiceHelper ?? (new VoiceHelper(Activity)); } }
 
         public override void BindView()
         {
@@ -36,15 +40,19 @@ namespace TrackingApp.Droid
             var results = e.Data.GetStringArrayListExtra(RecognizerIntent.ExtraResults);
             if (!results.Any()) return;
             var result = string.Join(" ", results);
-            PersistResult(_parser.Parse(result));
+            if (!PersistResult(_parser.Parse(result)))
+                VoiceHelper.Speak("No se ha podido procesar el evento");
+            else
+                VoiceHelper.Speak("El evento ha sido registrado");
             return;
         }
 
-        private void PersistResult(TextParseResult result)
+        private bool PersistResult(TextParseResult result)
         {
             var item = Event.FromTextResult(result);
+            if (item == null) return false;
             var store = new EventDataStore(new TableAdapter("events", StringSettings.Setttings));
-            store.Add(item);
+            return store.Add(item);
         }
 
         private void OnBasicButtonClick(object sender, EventArgs e)
@@ -57,8 +65,7 @@ namespace TrackingApp.Droid
         {
             var button = (Button)sender;
             if (!Validator.MicCheck(button.Context)) return;
-            var voice = new VoiceRecognition(Activity);
-            voice.Start();
+            VoiceHelper.Listen();
         }
     }
 }

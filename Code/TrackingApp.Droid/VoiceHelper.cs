@@ -10,22 +10,33 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Speech;
+using Android.Speech.Tts;
+using Java.Util;
 
 namespace TrackingApp.Droid
 {
 
     enum Request { Voice = 100 }
 
-    public class VoiceRecognition
+    public class VoiceHelper: TextToSpeech.IOnInitListener
     {
-        public VoiceRecognition(IActivity activity)
+        TextToSpeech speaker;
+        string toSpeak;
+
+        public VoiceHelper(IActivity activity)
         {
             Activity = activity;
         }
 
         public IActivity Activity { get; private set; }
 
-        public void Start()
+        public IntPtr Handle { get { return default(IntPtr); } }
+
+        public void Dispose()
+        {
+        }
+
+        public void Listen()
         {
             var voiceIntent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
             voiceIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
@@ -36,6 +47,21 @@ namespace TrackingApp.Droid
             voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
             voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, "es-ES");
             Activity.StartActivityForResult(voiceIntent, (int)Request.Voice);
+        }
+
+        public void OnInit([GeneratedEnum] OperationResult status)
+        {
+            if (status.Equals(OperationResult.Success))
+            {
+                speaker.Speak(toSpeak, QueueMode.Flush, null, null);
+            }
+        }
+        public void Speak(string text)
+        {
+            if (speaker == null) speaker = new TextToSpeech(Application.Context, this);
+            toSpeak = text;
+            speaker.SetLanguage(new Locale("es", "ES"));
+            speaker.Speak(toSpeak, QueueMode.Flush, null, null);
         }
     }
 }

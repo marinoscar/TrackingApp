@@ -78,7 +78,7 @@
     <Compile Include="TextParser.cs" />
     <Compile Include="TextParserService.cs" />
     <Compile Include="Validator.cs" />
-    <Compile Include="VoiceRecognition.cs" />
+    <Compile Include="VoiceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
