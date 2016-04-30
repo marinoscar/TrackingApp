@@ -66,6 +66,7 @@
     <Compile Include="EventDataStore.cs" />
     <Compile Include="EventItem.cs" />
     <Compile Include="IActivity.cs" />
+    <Compile Include="ITableStore.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainPresenter.cs" />
     <Compile Include="PresenterBase.cs" />
