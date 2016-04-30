@@ -22,25 +22,23 @@ namespace TrackingApp.Droid
         public override string ToOData()
         {
             var template = @"
-{
     ""PartitionKey"":""{0}"",
     ""RowKey"":""{1}"",
     ""Type"":""{2}"",
     ""Currency"":""{3}"",
     ""Category"":""{4}"",
-    ""LocalTmestamp@odata.type"":""Edm.DateTime"",
-    ""LocalTmestamp"":""{5}"",
+    ""LocalTimestamp@odata.type"":""Edm.DateTime"",
+    ""LocalTimestamp"":""{5}"",
     ""Value"":{6}  
-}
 ";
-            return string.Format(template,
-                PartitionKey, RowKey, Type, Currency, Category, LocalTmestamp.ToJson(), Value);
+            return "{" + string.Format(template,
+                PartitionKey, RowKey, Type, Currency, Category, LocalTimestamp.ToJson(), Value) + "}";
         }
 
         public string Type { get; set; }
         public string Currency { get; set; }
         public string Category { get; set; }
-        public DateTime LocalTmestamp { get; set; }
+        public DateTime LocalTimestamp { get; set; }
         public double Value { get; set; }
 
         public static Event FromTextResult(TextParseResult result)
@@ -49,7 +47,7 @@ namespace TrackingApp.Droid
             {
                 Category = result.Category,
                 Currency = result.Curency,
-                LocalTmestamp = DateTime.Now,
+                LocalTimestamp = DateTime.Now,
                 Type = result.Type,
                 Value = result.Value
             };
