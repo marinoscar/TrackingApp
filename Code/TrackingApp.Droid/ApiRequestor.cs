@@ -24,25 +24,34 @@ namespace TrackingApp.Droid
 
         public ApiResult<T> Execute<T>(IRestClient client, IRestRequest request, Action<T, IRestResponse> validation) where T : new()
         {
+            return Execute<T>(client, request, HttpStatusCode.OK, validation);
+        }
+
+        public ApiResult<T> Execute<T>(IRestClient client, IRestRequest request, HttpStatusCode expectedResult, Action<T, IRestResponse> validation) where T : new()
+        {
             var result = new ApiResult<T>();
             IRestResponse response = null;
             try
             {
                 response = client.Execute(request);
                 result.Message = response.StatusDescription;
-                result.Result = JsonConvert
-                    .DeserializeObject<List<T>>(response.Content, new JsonSerializerSettings() { EqualityComparer = StringComparer.CurrentCultureIgnoreCase })
-                    .FirstOrDefault();
-                if (response.StatusCode != HttpStatusCode.OK)
+                if (response.StatusCode != expectedResult)
                 {
                     result.HasErrors = true;
+                    result.Result = default(T);
+                }
+                else
+                {
+                    result.Result = JsonConvert
+                    .DeserializeObject<List<T>>(response.Content, new JsonSerializerSettings() { EqualityComparer = StringComparer.CurrentCultureIgnoreCase })
+                    .FirstOrDefault();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result.HasErrors = true;
                 result.Exception = ex;
-                if(response != null)
+                if (response != null)
                     result.Message = response.StatusDescription;
             }
             validation?.Invoke(result.Result, response);
