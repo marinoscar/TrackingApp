@@ -43,6 +43,7 @@ namespace TrackingApp.Droid
 
         public static Event FromTextResult(TextParseResult result)
         {
+            if (result == null) return null;
             var item = new Event(result.Action)
             {
                 Category = result.Category,
