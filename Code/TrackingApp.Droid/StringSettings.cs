@@ -9,25 +9,42 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using TrackingApp.Library.Interfaces;
 
 namespace TrackingApp.Droid
 {
-    public static class StringSettings
+    public class StringSettings : IStringSettings
     {
-        private static IDictionary<string, string> _settings;
+        private static StringSettings _settings;
+        private IDictionary<string, string> _values;
 
-        public static IDictionary<string, string> Setttings
+        public static IStringSettings Setttings
         {
             get
             {
-                if (_settings == null) LoadSettings();
+                if (_settings == null)
+                {
+                    _settings = new StringSettings();
+                    _settings.LoadSettings();
+                }
                 return _settings;
             }
         }
 
-        public static void LoadSettings()
+        public string this[string key]
         {
-            _settings = new Dictionary<string, string>()
+            get
+            {
+                if (_settings == null) LoadSettings();
+                return _settings[key];
+            }
+        }
+
+
+        public void LoadSettings()
+        {
+            
+            _values = new Dictionary<string, string>()
             {
                 {"ApplicationName",  Application.Context.GetString(Resource.String.ApplicationName)},
                 {"Hello",  Application.Context.GetString(Resource.String.Hello)},
