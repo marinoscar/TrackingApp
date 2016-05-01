@@ -17,7 +17,7 @@ namespace TrackingApp.Droid
     {
         private int _count;
         private TextParser _parser;
-        private VoiceHelper _voiceHelper;
+        private VoiceHelper _voiceHelper = null;
 
         public MainPresenter(IActivity activity, ITextParserService parserService) : base(activity)
         {
