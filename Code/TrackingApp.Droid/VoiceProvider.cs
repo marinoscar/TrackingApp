@@ -12,50 +12,61 @@ using Android.Widget;
 using Android.Speech;
 using Android.Speech.Tts;
 using Java.Util;
+using System.Threading.Tasks;
+using TrackingApp.Library;
 
 namespace TrackingApp.Droid
 {
 
     enum Request { Voice = 100 }
 
-    public class VoiceProvider: Java.Lang.Object, TextToSpeech.IOnInitListener
+    public class VoiceProvider: Java.Lang.Object, TextToSpeech.IOnInitListener, IVoiceProvider
     {
-        TextToSpeech speaker;
-        string toSpeak;
+        TextToSpeech _speaker;
+        string _toSpeak;
 
-        public VoiceProvider(IActivity activity)
+        public VoiceProvider(IVoiceActivity activity)
         {
             Activity = activity;
         }
 
-        public IActivity Activity { get; private set; }
+        public IVoiceActivity Activity { get; private set; }
 
-        public void Listen()
+        public Task<string> ListenAsync()
         {
-            var voiceIntent = new Intent(RecognizerIntent.ActionRecognizeSpeech);
-            voiceIntent.PutExtra(RecognizerIntent.ExtraLanguageModel, RecognizerIntent.LanguageModelFreeForm);
-            voiceIntent.PutExtra(RecognizerIntent.ExtraPrompt, Application.Context.GetString(Resource.String.SpeechMessage));
-            voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputCompleteSilenceLengthMillis, 1000);
-            voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputPossiblyCompleteSilenceLengthMillis, 1000);
-            voiceIntent.PutExtra(RecognizerIntent.ExtraSpeechInputMinimumLengthMillis, 3000);
-            voiceIntent.PutExtra(RecognizerIntent.ExtraMaxResults, 1);
-            voiceIntent.PutExtra(RecognizerIntent.ExtraLanguage, "es-ES");
-            Activity.StartActivityForResult(voiceIntent, (int)Request.Voice);
+            var task = Activity.DoVoiceRequest();
+            return task;
+        }
+
+        public string Listen()
+        {
+            var task = ListenAsync();
+            while (task.Status != TaskStatus.Running)
+            {
+            }
+            task.Wait();
+            return task.Result;
         }
 
         public void OnInit([GeneratedEnum] OperationResult status)
         {
             if (status.Equals(OperationResult.Success))
             {
-                speaker.Speak(toSpeak, QueueMode.Flush, null, null);
+                DoSpeak(_toSpeak);
             }
         }
         public void Speak(string text)
         {
-            if (speaker == null) speaker = new TextToSpeech(Application.Context, this);
-            toSpeak = text;
-            speaker.SetLanguage(new Locale("es", "ES"));
-            speaker.Speak(toSpeak, QueueMode.Flush, null, null);
+            if (_speaker == null) _speaker = new TextToSpeech(Application.Context, this);
+            _toSpeak = text;
+            DoSpeak(_toSpeak);
+        }
+
+        private void DoSpeak(string text)
+        {
+            _speaker.SetLanguage(new Locale("es", "ES"));
+            var p = new Dictionary<string, string>();
+            _speaker.Speak(text, QueueMode.Flush, p);
         }
     }
 }
