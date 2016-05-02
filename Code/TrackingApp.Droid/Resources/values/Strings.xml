@@ -3,7 +3,7 @@
   
   
   
-  <string name="SpeechButton.Text">Registrar Evento</string>
+  <string name="SpeechButton.Text">Toque el micrófono para empezar</string>
   <string name="SpeechMessage">¿Que deseas registrar?</string>
   <string name="ApplicationName">TrackingApp.Droid</string>
   <string name="LuisEndPoint">https://api.projectoxford.ai/luis/v1.0/prog/apps</string>

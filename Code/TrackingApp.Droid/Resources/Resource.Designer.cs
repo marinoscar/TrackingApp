@@ -83,7 +83,10 @@ namespace TrackingApp.Droid
 		{
 			
 			// aapt resource value: 0x7f060000
-			public const int imageButton1 = 2131099648;
+			public const int TxtSpeechInput = 2131099648;
+			
+			// aapt resource value: 0x7f060001
+			public const int imageButton1 = 2131099649;
 			
 			static Id()
 			{

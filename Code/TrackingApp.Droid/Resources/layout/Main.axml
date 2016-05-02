@@ -4,11 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <TextView
+        android:id="@+id/TxtSpeechInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textColor="@color/white"
+        android:textSize="26dp"
+        android:textStyle="normal"
+        android:text="@string/SpeechMessage" />
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:gravity="center"
+        android:orientation="vertical">
         <ImageButton
             android:src="@drawable/ico_mic"
             android:layout_width="wrap_content"
@@ -19,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/SpeechMessage"
+            android:text="@string/SpeechButton.Text"
             android:textColor="@color/white"
             android:textSize="15dp"
             android:textStyle="normal" />
