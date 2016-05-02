@@ -1,16 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using RestSharp;
-using Android.Content.Res;
+using TrackingApp.Droid.Library;
+using TrackingApp.Droid.Library.Configuration;
 
 namespace TrackingApp.Droid
 {
@@ -22,18 +14,25 @@ namespace TrackingApp.Droid
 
     public class TextParserService : ITextParserService
     {
+        public TextParserService(IStringSettings settings)
+        {
+            Settings = settings;
+        }
+
+        public IStringSettings Settings { get; private set; }
+
         public ApiResult<TextParserServiceResult> Parse(string text)
         {
             var dic = new Dictionary<string, string>()
             {
-                {"url",  Application.Context.GetString(Resource.String.LuisEndPoint)},
-                {"id",  Application.Context.GetString(Resource.String.LuisId)},
-                {"key",  Application.Context.GetString(Resource.String.LuisKey)},
+                {"url",  Settings["LuisEndPoint"]},
+                {"id", Settings["LuisId"]},
+                {"key",  Settings["LuisKey"]},
             };
             var client = new RestClient(dic["url"]);
             var request = GetRequest(dic, text);
             var requestor = new ApiRequestor();
-            var result =  requestor.Execute<List<TextParserServiceResult>>(client, request);
+            var result = requestor.Execute<List<TextParserServiceResult>>(client, request);
             return new ApiResult<TextParserServiceResult>()
             {
                 Code = result.Code,

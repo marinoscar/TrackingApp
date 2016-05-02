@@ -10,6 +10,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Speech;
+using TrackingApp.Droid.Library;
+using TrackingApp.Droid.Library.Models;
+using TrackingApp.Droid.Library.DataAccess;
 
 namespace TrackingApp.Droid
 {
@@ -17,14 +20,14 @@ namespace TrackingApp.Droid
     {
         private int _count;
         private TextParser _parser;
-        private VoiceHelper _voiceHelper = null;
+        private VoiceProvider _voiceHelper = null;
 
         public MainPresenter(IActivity activity, ITextParserService parserService) : base(activity)
         {
             _parser = new TextParser(parserService);
         }
 
-        public VoiceHelper VoiceHelper { get { return _voiceHelper ?? (new VoiceHelper(Activity)); } }
+        public VoiceProvider VoiceHelper { get { return _voiceHelper ?? (new VoiceProvider(Activity)); } }
 
         public override void BindView()
         {

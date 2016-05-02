@@ -10,6 +10,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System.Threading.Tasks;
+using TrackingApp.Droid.Library.Models;
+using TrackingApp.Droid.Library.DataAccess;
 
 namespace TrackingApp.Droid
 {

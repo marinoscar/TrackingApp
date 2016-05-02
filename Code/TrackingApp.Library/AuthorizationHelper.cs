@@ -1,20 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using RestSharp;
-using System.Collections.Specialized;
-using System.Collections;
 using System.Security.Cryptography;
 
-namespace TrackingApp.Droid
+namespace TrackingApp.Droid.Library
 {
     public class AuthorizationHelper
     {

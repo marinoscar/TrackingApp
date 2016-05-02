@@ -1,4 +1,6 @@
-﻿namespace TrackingApp.Droid
+﻿using TrackingApp.Droid.Library.Models;
+
+namespace TrackingApp.Droid.Library.DataAccess
 {
     public interface ITableAdapter
     {

@@ -18,23 +18,17 @@ namespace TrackingApp.Droid
 
     enum Request { Voice = 100 }
 
-    public class VoiceHelper: TextToSpeech.IOnInitListener
+    public class VoiceProvider: Java.Lang.Object, TextToSpeech.IOnInitListener
     {
         TextToSpeech speaker;
         string toSpeak;
 
-        public VoiceHelper(IActivity activity)
+        public VoiceProvider(IActivity activity)
         {
             Activity = activity;
         }
 
         public IActivity Activity { get; private set; }
-
-        public IntPtr Handle { get { return default(IntPtr); } }
-
-        public void Dispose()
-        {
-        }
 
         public void Listen()
         {

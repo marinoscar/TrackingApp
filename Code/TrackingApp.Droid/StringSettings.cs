@@ -9,7 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using TrackingApp.Library.Interfaces;
+using TrackingApp.Droid.Library.Configuration;
 
 namespace TrackingApp.Droid
 {
@@ -36,7 +36,7 @@ namespace TrackingApp.Droid
             get
             {
                 if (_settings == null) LoadSettings();
-                return _settings[key];
+                return _values[key];
             }
         }
 

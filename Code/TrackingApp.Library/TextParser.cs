@@ -2,15 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TrackingApp.Droid.Library.Models;
 
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
-namespace TrackingApp.Droid
+namespace TrackingApp.Droid.Library
 {
     public class TextParser
     {
@@ -45,16 +39,6 @@ namespace TrackingApp.Droid
                 value.Curency = itm.EntitiesResults.FirstOrDefault(i => i.Name == "Curency").Word;
             return value;
         }
-
-    }
-
-    public class TextParseResult
-    {
-        public string Type { get; set; }
-        public string Category { get; set; }
-        public string Action { get; set; }
-        public string Curency { get; set; }
-        public double Value { get; set; }
 
     }
 }

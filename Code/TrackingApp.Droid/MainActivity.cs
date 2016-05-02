@@ -19,7 +19,7 @@ namespace TrackingApp.Droid
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
-            var mainPresenter = new MainPresenter(this, new TextParserService());
+            var mainPresenter = new MainPresenter(this, new TextParserService(StringSettings.Setttings));
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)

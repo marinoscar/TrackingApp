@@ -1,25 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using RestSharp;
-using Newtonsoft.Json.Linq;
 using System.Net;
+using TrackingApp.Droid.Library.Models;
+using TrackingApp.Droid.Library.Configuration;
 
-namespace TrackingApp.Droid
+namespace TrackingApp.Droid.Library.DataAccess
 {
     public class TableAdapter : ITableAdapter
     {
         private AuthorizationHelper _auth;
 
-        public TableAdapter(string tableName, IDictionary<string, string> settings)
+        public TableAdapter(string tableName, IStringSettings settings)
         {
             TableName = tableName;
             Settings = settings;
@@ -27,7 +18,7 @@ namespace TrackingApp.Droid
         }
 
         public string TableName { get; private set; }
-        public IDictionary<string, string> Settings { get; private set; }
+        public IStringSettings Settings { get; private set; }
 
 
         public ApiResult<object> Add(IEntity entity)

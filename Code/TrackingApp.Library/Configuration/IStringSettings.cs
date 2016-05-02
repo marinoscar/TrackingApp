@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TrackingApp.Library.Interfaces
+﻿namespace TrackingApp.Droid.Library.Configuration
 {
     public interface IStringSettings
     {
