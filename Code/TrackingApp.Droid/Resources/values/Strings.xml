@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="Hello">Hello World, Click Me!</string>
-  <string name="SpeechButton.Text">Capture Speech</string>
-  <string name="SpeechMessage">Speak</string>
+  <string name="SpeechButton.Text">Registrar Evento</string>
+  <string name="SpeechMessage">¿Que deseas registrar?</string>
   <string name="ApplicationName">TrackingApp.Droid</string>
   <string name="LuisEndPoint">https://api.projectoxford.ai/luis/v1.0/prog/apps</string>
   <string name="LuisId">9f08fd09-8983-4687-9975-2cb47185d27a</string>
