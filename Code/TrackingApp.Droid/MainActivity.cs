@@ -24,6 +24,7 @@ namespace TrackingApp.Droid
 
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
+            ActionBar.Hide();
             var mainPresenter = new MainPresenter(this, new TextParserService(StringSettings.Setttings));
         }
 

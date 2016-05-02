@@ -41,14 +41,33 @@ namespace TrackingApp.Droid
 			}
 		}
 		
+		public partial class Color
+		{
+			
+			// aapt resource value: 0x7f040000
+			public const int white = 2130968576;
+			
+			static Color()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Color()
+			{
+			}
+		}
+		
 		public partial class Drawable
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			public const int ico_mic = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int radar = 2130837505;
+			public const int Icon = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int radar = 2130837506;
 			
 			static Drawable()
 			{
@@ -63,8 +82,8 @@ namespace TrackingApp.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int SpeechButton = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int imageButton1 = 2131099648;
 			
 			static Id()
 			{
@@ -95,32 +114,29 @@ namespace TrackingApp.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040003
-			public const int ApplicationName = 2130968579;
+			// aapt resource value: 0x7f050002
+			public const int ApplicationName = 2131034114;
 			
-			// aapt resource value: 0x7f040000
-			public const int Hello = 2130968576;
+			// aapt resource value: 0x7f050003
+			public const int LuisEndPoint = 2131034115;
 			
-			// aapt resource value: 0x7f040004
-			public const int LuisEndPoint = 2130968580;
+			// aapt resource value: 0x7f050004
+			public const int LuisId = 2131034116;
 			
-			// aapt resource value: 0x7f040005
-			public const int LuisId = 2130968581;
+			// aapt resource value: 0x7f050005
+			public const int LuisKey = 2131034117;
 			
-			// aapt resource value: 0x7f040006
-			public const int LuisKey = 2130968582;
+			// aapt resource value: 0x7f050000
+			public const int SpeechButton_Text = 2131034112;
 			
-			// aapt resource value: 0x7f040001
-			public const int SpeechButton_Text = 2130968577;
+			// aapt resource value: 0x7f050001
+			public const int SpeechMessage = 2131034113;
 			
-			// aapt resource value: 0x7f040002
-			public const int SpeechMessage = 2130968578;
+			// aapt resource value: 0x7f050007
+			public const int TableStore = 2131034119;
 			
-			// aapt resource value: 0x7f040008
-			public const int TableStore = 2130968584;
-			
-			// aapt resource value: 0x7f040007
-			public const int TableStoreKey = 2130968583;
+			// aapt resource value: 0x7f050006
+			public const int TableStoreKey = 2131034118;
 			
 			static String()
 			{

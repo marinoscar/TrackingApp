@@ -47,7 +47,6 @@ namespace TrackingApp.Droid
             _values = new Dictionary<string, string>()
             {
                 {"ApplicationName",  Application.Context.GetString(Resource.String.ApplicationName)},
-                {"Hello",  Application.Context.GetString(Resource.String.Hello)},
                 {"LuisEndPoint",  Application.Context.GetString(Resource.String.LuisEndPoint)},
                 {"LuisId",  Application.Context.GetString(Resource.String.LuisId)},
                 {"LuisKey",  Application.Context.GetString(Resource.String.LuisKey)},

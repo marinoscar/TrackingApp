@@ -30,7 +30,7 @@ namespace TrackingApp.Droid
 
         public override void BindView()
         {
-            Activity.FindViewById<Button>(Resource.Id.SpeechButton).Click += OnSpeechButtonClick;
+            Activity.FindViewById<ImageButton>(Resource.Id.imageButton1).Click += OnSpeechButtonClick;
         }
 
         public void RegisterEvent()
@@ -74,8 +74,7 @@ namespace TrackingApp.Droid
 
         private void OnSpeechButtonClick(object sender, EventArgs e)
         {
-            var button = (Button)sender;
-            if (!Validator.MicCheck(button.Context)) return;
+            if (!Validator.MicCheck(Application.Context)) return;
             RegisterEvent();
         }
     }
