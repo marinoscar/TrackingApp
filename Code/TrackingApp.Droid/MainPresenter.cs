@@ -22,18 +22,33 @@ namespace TrackingApp.Droid
         private TextParser _parser;
         private VoiceProvider _voiceHelper = null;
 
-        public MainPresenter(IActivity activity, ITextParserService parserService) : base(activity)
+        public MainPresenter(IVoiceActivity activity, ITextParserService parserService) : base(activity)
         {
             _parser = new TextParser(parserService);
         }
 
-        public VoiceProvider VoiceHelper { get { return _voiceHelper ?? (new VoiceProvider(Activity)); } }
+        public VoiceProvider VoiceProvider { get { return _voiceHelper ?? (new VoiceProvider((IVoiceActivity)Activity)); } }
 
         public override void BindView()
         {
             Activity.FindViewById<Button>(Resource.Id.MyButton).Click += OnBasicButtonClick;
             Activity.FindViewById<Button>(Resource.Id.SpeechButton).Click += OnSpeechButtonClick;
-            Activity.ActivityResult += OnActivityResult;
+        }
+
+        public void RegisterEvent()
+        {
+            var result = VoiceProvider.ListenAsync();
+            result.ContinueWith((t) => {
+                DoProcessEvent(t.Result);
+            });
+        }
+
+        private void DoProcessEvent(string requestText)
+        {
+            if (!PersistResult(_parser.Parse(requestText)))
+                VoiceProvider.Speak("No se ha podido procesar el evento");
+            else
+                VoiceProvider.Speak("El evento ha sido registrado");
         }
 
         private void OnActivityResult(object sender, ActivityResultArgs e)
@@ -44,9 +59,9 @@ namespace TrackingApp.Droid
             if (!results.Any()) return;
             var result = string.Join(" ", results);
             if (!PersistResult(_parser.Parse(result)))
-                VoiceHelper.Speak("No se ha podido procesar el evento");
+                VoiceProvider.Speak("No se ha podido procesar el evento");
             else
-                VoiceHelper.Speak("El evento ha sido registrado");
+                VoiceProvider.Speak("El evento ha sido registrado");
             return;
         }
 
@@ -68,7 +83,7 @@ namespace TrackingApp.Droid
         {
             var button = (Button)sender;
             if (!Validator.MicCheck(button.Context)) return;
-            VoiceHelper.Listen();
+            RegisterEvent();
         }
     }
 }

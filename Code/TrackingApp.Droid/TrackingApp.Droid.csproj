@@ -60,6 +60,7 @@
     <Compile Include="ActivityResultArgs.cs" />
     <Compile Include="EventDataStore.cs" />
     <Compile Include="IActivity.cs" />
+    <Compile Include="IVoiceActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainPresenter.cs" />
     <Compile Include="PresenterBase.cs" />
