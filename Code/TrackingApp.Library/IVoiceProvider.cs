@@ -8,6 +8,7 @@ namespace TrackingApp.Library
 {
     public interface IVoiceProvider
     {
+        Task<string> ListenAsync();
         string Listen();
         void Speak(string text);
     }
