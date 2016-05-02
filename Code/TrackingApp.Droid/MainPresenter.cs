@@ -18,7 +18,6 @@ namespace TrackingApp.Droid
 {
     public class MainPresenter : PresenterBase
     {
-        private int _count;
         private TextParser _parser;
         private VoiceProvider _voiceHelper = null;
 
@@ -31,7 +30,6 @@ namespace TrackingApp.Droid
 
         public override void BindView()
         {
-            Activity.FindViewById<Button>(Resource.Id.MyButton).Click += OnBasicButtonClick;
             Activity.FindViewById<Button>(Resource.Id.SpeechButton).Click += OnSpeechButtonClick;
         }
 
@@ -73,11 +71,6 @@ namespace TrackingApp.Droid
             return store.Add(item);
         }
 
-        private void OnBasicButtonClick(object sender, EventArgs e)
-        {
-            var button = (Button)sender;
-            button.Text = string.Format("{0} clicks!", _count++);
-        }
 
         private void OnSpeechButtonClick(object sender, EventArgs e)
         {
